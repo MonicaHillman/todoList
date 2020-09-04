@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import {
   AppRegistry,
-  StyleSheet,
   Text,
   View,
   FlatList,
-  Button,
   TextInput,
-  Keyboard,
-  Platform
 } from "react-native";
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from '../styles/todo';
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
 
 export default class TodoList extends Component {
@@ -57,16 +53,6 @@ export default class TodoList extends Component {
   };
 
   componentDidMount() {
-    Keyboard.addListener(
-      isAndroid ? "keyboardDidShow" : "keyboardWillShow",
-      e => this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
-    );
-
-    Keyboard.addListener(
-      isAndroid ? "keyboardDidHide" : "keyboardWillHide",
-      () => this.setState({ viewPadding: viewPadding })
-    );
-
     Tasks.all(tasks => this.setState({ tasks: tasks || [] }));
   }
 
@@ -75,18 +61,20 @@ export default class TodoList extends Component {
       <View
         style={[styles.container, { paddingBottom: this.state.viewPadding }]}
       >
+        <Text style={styles.text}>To do list</Text>
         <FlatList
           style={styles.list}
           data={this.state.tasks}
           renderItem={({ item, index }) =>
-            <View>
               <View style={styles.listItemCont}>
                 <Text style={styles.listItem}>
                   {item.text}
                 </Text>
-                <Button title="X" onPress={() => this.deleteTask(index)} />
+                <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button} onPress={() => this.deleteTask(index)}>
+                  <Text style={styles.buttonText}>X</Text>
+                  </TouchableOpacity>
               </View>
-              <View style={styles.hr} />
             </View>}
         />
         <TextInput

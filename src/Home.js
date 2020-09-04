@@ -12,7 +12,7 @@ class Home extends Component {
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('Todo')}
-          style={[styles.button, styles.buttonPrimary]}>
+          style={[styles.button]}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>
