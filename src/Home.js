@@ -1,22 +1,24 @@
-import React from 'react';
-import {View, Image, Text, Alert, TouchableOpacity} from 'react-native';
-import styles from './styles';
+import React, { Component } from 'react';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
+import styles from './styles/styles';
 import landingImg from './assets/landing.png';
 
-const App = () => {
-  return (
+class Home extends Component {
+  render () {
+    return (
     <View style={styles.container}>
       <Image source={landingImg} style={styles.banner} />
       <Text style={styles.title}>To do list</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={() => this.props.navigation.navigate('Sobre')}
           style={[styles.button, styles.buttonPrimary]}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
-};
+}
+}
 
-export default App;
+export default Home;
