@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
-import styles from './styles/styles';
+import styles from './styles/home';
 import landingImg from './assets/landing.png';
 
 class Home extends Component {
@@ -11,7 +11,7 @@ class Home extends Component {
       <Text style={styles.title}>To do list</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('Sobre')}
+          onPress={() => this.props.navigation.navigate('Todo')}
           style={[styles.button, styles.buttonPrimary]}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
